@@ -1,0 +1,29 @@
+version: '3'
+services:
+  config_db:
+    image: mysql/mysql-server:5.7
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: user
+      MYSQL_PASSWORD: Password@123
+      MYSQL_DATABASE: config_db
+    networks:
+      - data_mover
+  
+  schedular_db:
+    image: mysql/mysql-server:5.7
+    ports:
+      - "3307:3307"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: user
+      MYSQL_PASSWORD: Password@123
+      MYSQL_DATABASE: schedular_db
+    networks:
+      - data_mover
+
+networks:
+  data_mover:
+    driver: bridge
