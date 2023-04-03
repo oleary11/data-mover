@@ -1,28 +1,32 @@
-version: '3'
+version: '3.7'
 services:
   config_db:
-    image: mysql/mysql-server:5.7
-    ports:
-      - "3306:3306"
+    image: mongo:latest
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_USER: user
-      MYSQL_PASSWORD: Password@123
-      MYSQL_DATABASE: config_db
+      MONGO_INITDB_DATABASE: config_db
+      MONGO_INITDB_ROOT_USERNAME: user
+      MONGO_INITDB_ROOT_PASSWORD: Password@123
+    ports:
+      - 27017:27017
     networks:
       - data_mover
+    volumes:
+      - ./database/init_config_db.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - ./mongo-volume-1:/data/db
   
   schedular_db:
-    image: mysql/mysql-server:5.7
-    ports:
-      - "3307:3307"
+    image: mongo:latest
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_USER: user
-      MYSQL_PASSWORD: Password@123
-      MYSQL_DATABASE: schedular_db
+      MONGO_INITDB_DATABASE: schedular_db
+      MONGO_INITDB_ROOT_USERNAME: user
+      MONGO_INITDB_ROOT_PASSWORD: Password@123
+    ports:
+      - 27018:27017
     networks:
       - data_mover
+    volumes:
+      - ./database/init_schedular_db.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - ./mongo-volume-2:/data/db
 
 networks:
   data_mover:
