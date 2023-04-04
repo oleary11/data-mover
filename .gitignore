@@ -1,2 +1,8 @@
+# Services
 /temporal_service/package-lock.json
 /temporal_service/node_modules
+/config_service/package-lock.json
+/config_service/node_modules
+
+#Dev files 
+/dev
