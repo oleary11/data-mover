@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const Source = require('./models/Source')
+const Destination = require('./models/Destination')
 
 // Constants
 const app = express();
@@ -80,6 +81,35 @@ app.delete('/source/:id', jsonParser, (req, res) => {
         console.log(err);
         res.json({"message" : "Error deleting source."});
     })
+});
+
+app.get('/destination', (req, res) => {
+    Destination.find({})
+    .then((data) => {
+        res.json(data);
+    })
+    .catch((err) => {
+        console.log(err);
+        res.json({"message" : "Error fetching destinations."});
+    })
+});
+
+app.get('/destination/:id', (req, res) => {
+    Source.findOne({"DestinationId" : req.params.id})
+    .then((data) => {
+        res.json(data);
+    })
+    .catch((err) => {
+        console.log(err);
+        res.json({"message" : "Error fetching destination."});
+    })
+});
+
+app.post('/destination', jsonParser, (req, res) => {
+    const new_destination = new Destination(req.body);
+    new_destination.save().then(val => {
+        res.json({ message: "Destination added successfully", data: val })
+      });
 });
 
 // Listener
