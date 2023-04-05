@@ -4,7 +4,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const Source = require('./models/Source')
-const Destination = require('./models/Destination')
+const Destination = require('./models/Destination');
+const { emitWarning } = require('process');
 
 // Constants
 const app = express();
@@ -78,7 +79,6 @@ app.delete('/source/:id', jsonParser, (req, res) => {
         res.json(data);
     })
     .catch((err) => {
-        console.log(err);
         res.json({"message" : "Error deleting source."});
     })
 });
@@ -89,7 +89,6 @@ app.get('/destination', (req, res) => {
         res.json(data);
     })
     .catch((err) => {
-        console.log(err);
         res.json({"message" : "Error fetching destinations."});
     })
 });
@@ -110,6 +109,37 @@ app.post('/destination', jsonParser, (req, res) => {
     new_destination.save().then(val => {
         res.json({ message: "Destination added successfully", data: val })
       });
+});
+
+app.put('/destination/:id', jsonParser, (req,res) => {
+    const new_destination = new Destination(req.body);
+    Destination.updateOne({"DestinationId" : req.params.id}, {
+        $set: {
+            DestinationType: new_destination.DestinationType,
+            Host: new_destination.Host,
+            Post: new_destination.port,
+            DBName: new_destination.DBName,
+            User: new_destination.User,
+            Pass: new_destination.Pass
+        }
+    })
+    .then(val => {
+        res.json({message : "Destination updated successfully", data: val})
+    })
+    .catch((err) => {
+        console.log(err);
+        res.json({"message" : "Error updating Destination."});
+    });
+})
+
+app.delete('/destination/:id', jsonParser, (req,res) => {
+    Destination.deleteOne({"DestinationId" : req.params.id})
+    .then((data) => {
+        res.json(data)
+    })
+    .catch((err) => {
+        res.json({"message" : "Error deleting destination."});
+    })
 });
 
 // Listener
