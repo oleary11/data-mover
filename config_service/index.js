@@ -5,7 +5,6 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const Source = require('./models/Source')
 const Destination = require('./models/Destination');
-const { emitWarning } = require('process');
 
 // Constants
 const app = express();
