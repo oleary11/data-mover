@@ -141,5 +141,10 @@ app.delete('/destination/:id', jsonParser, (req,res) => {
     })
 });
 
+// Middleware
+app.use(cors({
+    origin: '*'
+}));
+
 // Listener
 app.listen(port, () => console.log(`Config service listening to port - ${port}!`))
