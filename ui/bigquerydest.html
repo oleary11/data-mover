@@ -14,99 +14,131 @@
     <a href="index.html"><i class="fa fa-home"></i> Home</a>
     <a href="about.html"><i class="fa fa-solid fa-question-circle"></i> About</a>
     <a href="sources.html"><i class="fab fa-sourcetree"></i> Sources</a>
-    <a href="destinations.html"><i class="fas fa-map-marker-alt"></i> Destinations</a> 
+    <a href="destinations.html"><i class="fas fa-map-marker-alt"></i> Destinations</a>
+    <a href="connections.html"><i class="fas fa-link"></i> Connections</a>
     <a href="login.html" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
   </div>
-  <!-- Use Bootstrap classes to create a responsive grid layout -->
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 offset-md-3">
-        <div class="card" id = "source-card">
-          <div class="card-body">
-            <form>
-              <div class="form-group">
-                <label for="destination" class="destination-title">Set up the Destination:</label>
-                <hr>
-                <select class="form-control" id="destination">
-                  <option value="">Select a Destination</option>
-                  <option value="googlesheetsdest.html"><i class="far fa-file-excel"></i> Google Sheets</option>
-                  <option value="mysqldest.html"><i class="far fa-database"></i> MySQL</option>
-                  <option value="bigquerydest.html"><i class="far fa-cloud"></i> BigQuery</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="destination-name">Destination Name:</label>
-                <input type="text" class="form-control" id="destination-name">
-              </div>
-
-              <div class="form-group">
-                <label for="project-id">Project ID:</label>
-                <input type="text" class="form-control" id="project-id">
-              </div>
-
-              <div class = "form-group">
-                <label for = "location">Dataset Location:</label>
-                <select class="form-control" id="location">
-                  <option value="">Select a Location</option>
-                  <option> US </option>
-                  <option> EU </option>
-                  <option> asia-east1 </option>
-                  <option> asia-east2 </option>
-                  <option> asia-northeast1 </option>
-                  <option> asia-northeast2 </option>
-                  <option> asia-northeast3 </option>
-                  <option> asia-south1 </option>
-                  <option> asia-south2 </option>
-                  <option> asia-southeast1 </option>
-                  <option> asia-southeast2 </option>
-                  <option> australia-southeast1 </option>
-                  <option> australia-southeast2 </option>
-                  <option> europe-central2 </option>
-                  <option> europe-north </option>
-                  <option> europe-west1 </option>
-                  <option> europe-west2 </option>
-                  <option> europe-west3 </option>
-                  <option> europe-west4 </option>
-                  <option> europe-west5 </option>
-                  <option> europe-west6 </option>
-                  <option> northameerica-northeast1 </option>
-                  <option> northameerica-northeast2 </option>
-                  <option> southamerica-east1 </option>
-                  <option> southamerica-west1 </option>
-                  <option> us-central1 </option>
-                  <option> us-east1 </option>
-                  <option> us-east4 </option>
-                  <option> us-west1 </option>
-                  <option> us-west2 </option>
-                  <option> us-west3 </option>
-                  <option> us-west4 </option>
-                </select>
-              </div>
-
-              <div class="form-group">
-                <label for="service-key">Service Account Key JSON:</label>
-                <input type="text" class="form-control" id="service-key">
-              </div>
-
-              <div class="form-group">
-                <label for = "run-type">Transformative Query Run Type:</label>
-                <select class="form-control" id="run-type">
-                  <option> iteractive </option>
-                  <option> batch </option>
-                </select>
-              </div>
-
-              <div class="form-group">
-                <label for="chunk-size">Google BigQuery Client Chunk Size</label>
-                <input type="number" class="form-control" id="chunk-size" value = "15">
-              </div>
-              <button type="submit" class="btn btn-primary">Continue to Source</button>
-            </form>
-          </div>
+  
+  <div class="sources-container">
+    <div class = "card">
+      <form class="sources-form">
+        <div class="form-group">
+          <label for="destination" class="source-title">Set up the Destination:</label>
+          <hr>
+          <select class="form-control" id="destination">
+            <option value="">Select a Destination</option>
+            <option value="googlesheetsdest.html"><i class="far fa-file-excel"></i> Google Sheets</option>
+            <option value="mysqldest.html"><i class="far fa-database"></i> MySQL</option>
+            <option value="bigquerydest.html"><i class="far fa-cloud"></i> BigQuery</option>
+          </select>
         </div>
-      </div>
+        <div class="form-group">
+          <label for="destination-name">Destination Name:</label>
+          <input type="text" class="form-control" id="destination-name">
+        </div>
+      
+        <div class="form-group">
+          <label for="project-id">Project ID:</label>
+          <input type="text" class="form-control" id="project-id">
+        </div>
+      
+        <div class = "form-group">
+          <label for = "location">Dataset Location:</label>
+          <select class="form-control" id="location">
+            <option value="">Select a Location</option>
+            <option> US </option>
+            <option> EU </option>
+            <option> asia-east1 </option>
+            <option> asia-east2 </option>
+            <option> asia-northeast1 </option>
+            <option> asia-northeast2 </option>
+            <option> asia-northeast3 </option>
+            <option> asia-south1 </option>
+            <option> asia-south2 </option>
+            <option> asia-southeast1 </option>
+            <option> asia-southeast2 </option>
+            <option> australia-southeast1 </option>
+            <option> australia-southeast2 </option>
+            <option> europe-central2 </option>
+            <option> europe-north </option>
+            <option> europe-west1 </option>
+            <option> europe-west2 </option>
+            <option> europe-west3 </option>
+            <option> europe-west4 </option>
+            <option> europe-west5 </option>
+            <option> europe-west6 </option>
+            <option> northameerica-northeast1 </option>
+            <option> northameerica-northeast2 </option>
+            <option> southamerica-east1 </option>
+            <option> southamerica-west1 </option>
+            <option> us-central1 </option>
+            <option> us-east1 </option>
+            <option> us-east4 </option>
+            <option> us-west1 </option>
+            <option> us-west2 </option>
+            <option> us-west3 </option>
+            <option> us-west4 </option>
+          </select>
+        </div>
+      
+        <div class="form-group">
+          <label for="service-key">Service Account Key JSON:</label>
+          <input type="text" class="form-control" id="service-key">
+        </div>
+      
+        <div class="form-group">
+          <label for = "run-type">Transformative Query Run Type:</label>
+          <select class="form-control" id="run-type">
+            <option> iteractive </option>
+            <option> batch </option>
+          </select>
+        </div>
+      
+        <div class="form-group">
+          <label for="chunk-size">Google BigQuery Client Chunk Size</label>
+          <input type="number" class="form-control" id="chunk-size" value = "15">
+        </div>
+        <button type="submit" class="btn btn-primary">Continue to Source</button>
+      </form>
+    </div>
+    <div class = "card">
+      <table class="sources-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Connector</th>
+            <th>Destination</th>
+            <th>Last Sync</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Sample 1</td>
+            <td>Google Sheets
+            <td>MySQL</td>
+            <td>2023-03-23 14:35</td>
+            <td>Success</td>
+          </tr>
+          <tr>
+            <td>Sample 2</td>
+            <td>MySQL</td>
+            <td>BigQuery</td>
+            <td>2023-03-22 18:50</td>
+            <td>Success</td>
+          </tr>
+          <tr>
+            <td>Sample 3</td>
+            <td>BigQuery</td>
+            <td>Google Sheets</td>
+            <td>2023-03-23 10:15</td>
+            <td>Error</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
+
   <!-- Link to Bootstrap CDN for JavaScript plugins -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

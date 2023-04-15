@@ -6,6 +6,16 @@
 /* You can also add your own classes and styles for specific elements */
 
 /* Change the color of the navbar to blue */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
 .navbar {
   background-color: rgba(67, 67, 72, 0.537);
 }
@@ -142,6 +152,52 @@
   padding: 1rem;
 }
 
+.sources-container {
+    display: flex;
+    width: calc(100vw - 217px - 1rem); /* Subtract the 300px reserved for the side nav-bar and 1rem for right padding */
+    height: calc(100vh - 2rem); /* Subtract 2rem for top and bottom padding */
+    margin-left: 217px; /* Add 300px margin to the left */
+    margin-top: 1rem; /* Add 1rem margin to the top */
+    margin-bottom: 1rem; /* Add 1rem margin to the bottom */
+    margin-right: 1rem; /* Add 1rem margin to the right */
+}
+
+.sources-form,
+.sources-table {
+    flex: 1; /* Both elements will take up 50% of the container's width */
+    height: 100%;
+    padding: 1rem;
+    overflow: auto; /* Enable scrolling if the content overflows its container */
+}
+
+/* Optional: some basic table styles */
+sources-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  text-align: center; /* Center the text horizontally */
+  vertical-align: middle; /* Center the text vertically */
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+tr {
+  vertical-align: middle; /* Vertically align the text within the cells */
+  height: 2rem; /* Set a fixed height for the rows */
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
 .image-container {
   width: 200px;
   height: 200px;
@@ -171,6 +227,19 @@
   margin-right: 20px;
 }
 
+.card {
+  flex: 1; /* Both elements will take up 50% of the container's width */
+  height: 100%;
+  padding: 1rem;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: add a shadow for a more card-like appearance */
+  overflow: auto; /* Enable scrolling if the content overflows its container */
+}
+
+/* Optional: add some spacing between the cards */
+.card + .card {
+  margin-left: 1rem;
+}
 
 /* Change the color of the headings to green */
 h1, h2{
@@ -210,6 +279,10 @@ img {
 }
 
 #sources {
+  background-color: #FAF9F6;
+}
+
+#home-page {
   background-color: #FAF9F6;
 }
 
