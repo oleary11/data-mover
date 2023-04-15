@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Destinations</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles/style.css">
+  <script src="https://kit.fontawesome.com/bfdf0e78f1.js" crossorigin="anonymous"></script>
+</head>
+<body id="sources">
+  <!-- Use Bootstrap classes to create a responsive navbar -->
+  <div class="sidenav">
+    <a href="index.html"><i class="fa fa-home"></i> Home</a>
+    <a href="about.html"><i class="fa fa-solid fa-question-circle"></i> About</a>
+    <a href="sources.html"><i class="fab fa-sourcetree"></i> Sources</a>
+    <a href="destinations.html"><i class="fas fa-map-marker-alt"></i> Destinations</a> 
+    <a href="login.html" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+  </div>
+  <!-- Use Bootstrap classes to create a responsive grid layout -->
+  <div class="container"> 
+    <div class="container"> 
+      <!-- Use Bootstrap classes to create a responsive row -->
+      <div class ="starter">
+        <h2> Select a destination below to get started</h2>
+      </div>
+      
+      <div class="main-content">
+        <div class="row">      
+          <div class="col-sm-4">        
+            <div class="image-container">
+              <a href="googlesheetsdest.html"><img src="images/sheets.svg" alt="Google Sheets" class="source-image"></a>
+            </div>
+  
+            <h3>Google Sheets</h3>        
+            <p>Transfer Data From Google Sheets</p>      
+          </div>      
+          <div class="col-sm-4">
+            <div class = "image-container">
+              <a href="mysqldest.html"><img src="images/image2.jpg" alt="MySQL" width=200 height=200 class="source-image"></a>     
+            </div> 
+            <h3>MySQL</h3>       
+            <p>Transfer Data From MySQL</p>     
+          </div>     
+          <div class="col-sm-4">
+            <div class="image-container">
+              <a href="bigquerydest.html"><img src="images/image3.jpg" alt="MySQL" width=200 height=200 class="source-image"></a>    
+            </div>
+            <h3>BigQuery</h3>       
+            <p>Transfer Data From BigQuery</p>     
+          </div>    
+        </div>
+      </div>
+
+      <div class="row mt-5">      
+        <div class="col-sm-12 text-center">
+          <footer class="footer">
+            <div class="container">
+              <span class="text-muted">© 2023 by My Website. All rights reserved.</span>
+            </div>
+          </footer>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Link to Bootstrap CDN for JavaScript plugins -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js">

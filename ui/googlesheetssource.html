@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sources</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="https://kit.fontawesome.com/bfdf0e78f1.js" crossorigin="anonymous"></script>
+  </head>
+  <body id="sources">
+    <!-- Responsive navbar -->
+    <div class="sidenav">
+      <a href="index.html"><i class="fa fa-home"></i> Home</a>
+      <a href="about.html"><i class="fa fa-solid fa-question-circle"></i> About</a>
+      <a href="sources.html"><i class="fab fa-sourcetree"></i> Sources</a>
+      <a href="destinations.html"><i class="fas fa-map-marker-alt"></i> Destinations</a>
+      <a href="login.html" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+
+    <!-- Responsive grid layout -->
+    <div class="container">
+      <div class="row equal-height">
+        <div id="sourcetable" class="col-md-6" style="margin-left: 300px;">
+          <div class="card">
+            <div class="card-body">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Connector</th>
+                    <th>Destination</th>
+                    <th>Last Sync</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Sample data rows -->
+                  <tr>
+                    <td>Sample 1</td>
+                    <td>Google Sheets
+                    <td>MySQL</td>
+                    <td>2023-03-23 14:35</td>
+                    <td>Success</td>
+                  </tr>
+                  <tr>
+                    <td>Sample 2</td>
+                    <td>MySQL</td>
+                    <td>BigQuery</td>
+                    <td>2023-03-22 18:50</td>
+                    <td>Success</td>
+                  </tr>
+                  <tr>
+                    <td>Sample 3</td>
+                    <td>BigQuery</td>
+                    <td>Google Sheets</td>
+                    <td>2023-03-23 10:15</td>
+                    <td>Error</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="col-md-6" style="margin-left: 300px;">
+          <div class="card" id="source-card">
+            <div class="card-body">
+              <form>
+                <div class="form-group">
+                  <label for="source" class="source-title">Set up the Source:</label>
+                  <hr>
+                  <select class="form-control" id="source">
+                    <option value="">Select a Source</option>
+                    <option value="googlesheetssource.html"><i class="far fa-file-excel"></i> Google Sheets</option>
+                    <option value="mysqlsource.html"><i class="far fa-database"></i> MySQL</option>
+                    <option value="bigquerysource.html"><i class="far fa-cloud"></i> BigQuery</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="source-name">Source Name:</label>
+                  <input type="text" class="form-control" id="source-name">
+                </div>
+                <div class="form-group">
+                  <label for="source-name">Row Batch Size:</label>
+                  <input type="number" class="form-control" id="source-name" value="200">
+                </div>
+                <div class="form-group">
+                  <label for="source-name">Spreadsheet Link:</label>
+                  <input type="text" class="form-control" id="spreadsheet-link">
+                </div>
+                <button type="submit" class="btn btn-primary">Continue to Destination</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      document.getElementById('source').addEventListener('change', function() {
+        if (this.value) {
+          window.location.href = this.value;
+        }
+      });
+
+      function loadSelectedSource() {
+        var currentPage = window.location.href.split('/').pop();
+        var sourceDropdown = document.getElementById('source');
+        var sourceNameInput = document.getElementById('source-name');
+
+        switch (currentPage) {
+          case 'googlesheetssource.html':
+            sourceDropdown.value = 'googlesheetssource.html';
+            sourceNameInput.value = 'Google Sheets';
+            break;
+          case 'mysqlsource.html':
+            sourceDropdown.value = 'mysqlsource.html';
+            sourceNameInput.value = 'MySQL';
+            break;
+          case 'bigquerysource.html':
+            sourceDropdown.value = 'bigquerysource.html';
+            sourceNameInput.value = 'Big Query';
+            break;
+          default:
+            sourceDropdown.value = '';
+            sourceNameInput.value = '';
+        }
+      }
+
+      window.onload = loadSelectedSource;
+    </script>
+  </body>
+</html>

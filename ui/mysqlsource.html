@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sources</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles/style.css">
+  <script src="https://kit.fontawesome.com/bfdf0e78f1.js" crossorigin="anonymous"></script>
+</head>
+<body id="sources">
+  <!-- Use Bootstrap classes to create a responsive navbar -->
+  <div class="sidenav">
+    <a href="index.html"><i class="fa fa-home"></i> Home</a>
+    <a href="about.html"><i class="fa fa-solid fa-question-circle"></i> About</a>
+    <a href="sources.html"><i class="fab fa-sourcetree"></i> Sources</a>
+    <a href="destinations.html"><i class="fas fa-map-marker-alt"></i> Destinations</a> 
+    <a href="login.html" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+  </div>
+  <!-- Use Bootstrap classes to create a responsive grid layout -->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="card" id = "source-card">
+          <div class="card-body">
+            <form>
+              <div class="form-group">
+                <label for="source" class="source-title">Set up the Source:</label>
+                <hr>
+                <select class="form-control" id="source">
+                  <option value="">Select a Source</option>
+                  <option value="googlesheetssource.html">Google Sheets</option>
+                  <option value="mysqlsource.html">MySQL</option>
+                  <option value="bigquerysource.html">BigQuery</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="source-name">Source Name:</label>
+                <input type="text" class="form-control" id="source-name">
+              </div>
+
+              <div class="form-group">
+                <label for="host">Host:</label>
+                <input type="text" class="form-control" id="host">
+              </div>
+
+              <div class="form-group">
+                <label for="port">Port:</label>
+                <input type="number" class="form-control" id="port" value = "3306">
+              </div>
+
+              <div class="form-group">
+                <label for="database">Database:</label>
+                <input type="text" class="form-control" id="database">
+              </div>
+
+              <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username">
+              </div>
+
+              <div class="form-group">
+                <label for="password">Password:</label>
+                <div class="input-group">
+                  <input type="password" class="form-control" id="password">
+                  <div class="input-group-append">
+                    <button type="button" class="btn btn-secondary" id="togglePassword"><i class="fas fa-eye"></i></button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="jdbc">JDBC URL Parameters (Advanced):</label>
+                <input type="text" class="form-control" id="port">
+              </div>
+              <button type="submit" class="btn btn-primary">Continue to Destination</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Link to Bootstrap CDN for JavaScript plugins -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    document.getElementById('source').addEventListener('change', function() {
+      if (this.value) {
+        window.location.href = this.value;
+      }
+    });
+
+    function loadSelectedSource() {
+      var currentPage = window.location.href.split('/').pop();
+      var sourceDropdown = document.getElementById('source');
+      var sourceNameInput = document.getElementById('source-name');
+
+      switch (currentPage) {
+        case 'googlesheetssource.html':
+          sourceDropdown.value = 'googlesheetssource.html';
+          sourceNameInput.value = 'Google Sheets';
+          break;
+        case 'mysqlsource.html':
+          sourceDropdown.value = 'mysqlsource.html';
+          sourceNameInput.value = 'MySQL';
+          break;
+        case 'bigquerysource.html':
+          sourceDropdown.value = 'bigquerysource.html';
+          sourceNameInput.value = 'Big Query';
+          break;
+        default:
+          sourceDropdown.value = '';
+          sourceNameInput.value = '';
+      }
+    }
+
+    function togglePasswordVisibility() {
+      var passwordField = document.getElementById('password');
+      var toggleButton = document.getElementById('togglePassword');
+
+      if (passwordField.type === 'password') {
+        passwordField.type = 'text';
+        toggleButton.innerHTML = '<i class="fas fa-eye-slash"></i>';
+      } else {
+        passwordField.type = 'password';
+        toggleButton.innerHTML = '<i class="fas fa-eye"></i>';
+      }
+    }
+
+    // Add an event listener for the "Show Password" button
+    document.getElementById('togglePassword').addEventListener('click', togglePasswordVisibility);
+
+    window.onload = loadSelectedSource;
+  </script>
+</body>
+</html>

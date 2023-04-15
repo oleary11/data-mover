@@ -1,0 +1,235 @@
+/* Create a custom css file and link it to your HTML file after the Bootstrap CDN link */
+/* See https://www.creative-tim.com/blog/web-design/add-bootstrap-html-guide/ for more details */
+
+/* You can use this file to override or customize the Bootstrap styles */
+/* For example, you can change the color of the navbar, footer, headings, etc. */
+/* You can also add your own classes and styles for specific elements */
+
+/* Change the color of the navbar to blue */
+.navbar {
+  background-color: rgba(67, 67, 72, 0.537);
+}
+
+/* Change the color of the footer to gray */
+.footer {
+  background-color: #FAF9F6;
+  margin-left: 200px;
+  padding: 1rem;
+}
+
+.sidenav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  padding-top: 20px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 16px;
+  text-decoration: none;
+  font-size: 18px;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.login-container {
+  background-color: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signin-btn, .submit-btn {
+  background-color: #4285F4;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.signup-container {
+  background-color: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.divider {
+  margin-top: 20px; /* Add this line */
+  margin-bottom: 10px;
+  display: inline-block;
+  position: relative;
+  text-align: center;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  position: absolute;
+  top: 45%;
+  width: 140px; /* Adjust this value to control the line length */
+  height: 2px;
+  background-color: green;
+}
+
+.divider::before {
+  right: 100%;
+  margin-right: 10px;
+}
+
+.divider::after {
+  left: 100%;
+  margin-left: 10px;
+}
+
+.input-label {
+  display: inline-block;
+  min-width: 150px; /* Adjust this value to control the width of the labels */
+  text-align: right;
+  margin-right: 10px;
+}
+
+.jumbotron {
+  text-align: center;
+  padding: 2rem;
+  margin-left: 200px;
+  padding: 1rem;
+}
+
+.main-content {
+  margin-left: 200px;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.starter {
+  margin-left: 200px;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.logout {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.form-group .source-title {
+  color: green; /* You can replace 'red' with any valid color value you want */
+  font-size: 20px;
+}
+
+.about-title {
+  text-align: center;
+  padding: 2rem;
+  margin-left: 200px;
+  padding: 1rem;
+}
+
+.image-container {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: box-shadow 0.3s ease-in-out; /* Add this line for smooth hover effect */
+}
+
+.source-image {
+  width: 150px; /* Adjust the width as needed */
+  height: 150px; /* Adjust the height as needed */
+}
+
+.image-container:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.container {
+  margin-left: 300px;
+  margin-top: 50px;
+}
+
+.col-md-6 {
+  margin-right: 20px;
+}
+
+
+/* Change the color of the headings to green */
+h1, h2{
+  color: green;
+}
+
+h3 {
+  color: green;
+  font-size: 20px;
+}
+
+h4 {
+   font-size: 14px;
+   color: #818181;
+}
+/* Add some margin and padding to the images */
+img {
+  margin: 10px;
+  padding: 10px;
+}
+
+#source-card {
+  border: 20px solid #ffffff; /* This will create a 20px border with white color */
+  margin-left: -450px; /* This will move the form 30px to the left, adjust the value as needed */
+  width: 500px;
+  margin-top: 50px;
+  box-shadow: 0 0 10px rgb(129, 129, 129);
+}
+
+#index {
+  background-color: #FAF9F6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+#sources {
+  background-color: #FAF9F6;
+}
+
+/* Styles for login.html */
+#login {
+  background-color: gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+#sourcetable tbody tr td {
+  background-color: #ffffff !important;
+  padding-top: 300px;
+  margin-top: 300px;
+}
+
+.equal-height {
+  display: flex;
+  align-items: stretch;
+}

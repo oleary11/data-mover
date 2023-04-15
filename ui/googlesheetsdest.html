@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sources</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles/style.css">
+  <script src="https://kit.fontawesome.com/bfdf0e78f1.js" crossorigin="anonymous"></script>
+</head>
+<body id="sources">
+  <!-- Use Bootstrap classes to create a responsive navbar -->
+  <div class="sidenav">
+    <a href="index.html"><i class="fa fa-home"></i> Home</a>
+    <a href="about.html"><i class="fa fa-solid fa-question-circle"></i> About</a>
+    <a href="sources.html"><i class="fab fa-sourcetree"></i> Sources</a>
+    <a href="destinations.html"><i class="fas fa-map-marker-alt"></i> Destinations</a> 
+    <a href="login.html" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+  </div>
+  <!-- Use Bootstrap classes to create a responsive grid layout -->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="card" id = "source-card">
+          <div class="card-body">
+            <form>
+              <div class="form-group">
+                <label for="destination" class="destination-title">Set up the Destination:</label>
+                <hr>
+                <select class="form-control" id="destination">
+                  <option value="">Select a Destination</option>
+                  <option value="googlesheetsdest.html"><i class="far fa-file-excel"></i> Google Sheets</option>
+                  <option value="mysqldest.html"><i class="far fa-database"></i> MySQL</option>
+                  <option value="bigquerydest.html"><i class="far fa-cloud"></i> BigQuery</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="destination-name">Destination Name:</label>
+                <input type="text" class="form-control" id="destination-name">
+              </div>
+
+              <div class="form-group">
+                <label for="source-name">Spreadsheet Link:</label>
+                <input type="text" class="form-control" id="spreadsheet-link">
+              </div>
+              <button type="submit" class="btn btn-primary">Continue to Source</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Link to Bootstrap CDN for JavaScript plugins -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    document.getElementById('destination').addEventListener('change', function() {
+      if (this.value) {
+        window.location.href = this.value;
+      }
+    });
+
+    function loadSelectedDest() {
+      var currentPage = window.location.href.split('/').pop();
+      var sourceDropdown = document.getElementById('destination');
+      var sourceNameInput = document.getElementById('destination-name');
+
+      switch (currentPage) {
+        case 'googlesheetsdest.html':
+          sourceDropdown.value = 'googlesheetsdest.html';
+          sourceNameInput.value = 'Google Sheets';
+          break;
+        case 'mysqldest.html':
+          sourceDropdown.value = 'mysqldest.html';
+          sourceNameInput.value = 'MySQL';
+          break;
+        case 'bigquerydest.html':
+          sourceDropdown.value = 'bigquerydest.html';
+          sourceNameInput.value = 'Big Query';
+          break;
+        default:
+          sourceDropdown.value = '';
+          sourceNameInput.value = '';
+      }
+    }
+
+    window.onload = loadSelectedDest;
+  </script>
+</body>
+</html>

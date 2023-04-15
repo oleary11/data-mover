@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="https://kit.fontawesome.com/bfdf0e78f1.js" crossorigin="anonymous"></script>
+    <title>Login</title>
+</head>
+<!-- Import Firebase modules -->  
+<body id="login">
+    <div class="login-container">
+        <h2> Sign In / Create Account </h2>
+        <button id="signin-btn" class="signin-btn"><i class="fa fa-google"></i> Sign In with Google</button>
+    </div>
+</body>
+<script type="module">
+  import {
+    initializeApp
+} 
+from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
+import {
+    getAuth,
+    GoogleAuthProvider,
+    signInWithPopup,
+} 
+from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyCSnceeKAvl3rBXblqvXa6etuRAhF9AwD4",
+    authDomain: "elt-tool-big-data.firebaseapp.com",
+    projectId: "elt-tool-big-data",
+    storageBucket: "elt-tool-big-data.appspot.com",
+    messagingSenderId: "903849393255",
+    appId: "1:903849393255:web:0797aa3c22025f3459e8c2",
+    measurementId: "G-96Y9J0Z2RW"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+// Wait for DOM to be fully loaded
+document.addEventListener("DOMContentLoaded", () => {
+const signinBtn = document.getElementById("signin-btn");
+
+signinBtn.addEventListener("click", async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+    const result = await signInWithPopup(auth, provider);
+    if (result.user) {
+        window.location.href = "index.html";
+    }
+    } catch (error) {
+    console.log(error.message);
+    }
+});
+});
+</script>
+
+</html>
