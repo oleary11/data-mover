@@ -3,6 +3,8 @@
 /temporal_service/node_modules
 /config_service/package-lock.json
 /config_service/node_modules
+/connections_service/package-lock.json
+/connections_service/node_modules
 
 # Volumes
 /mongo-volume-1
@@ -10,3 +12,6 @@
 
 #Dev files 
 /dev/cache.txt
+
+#Credentials and Secrets :)
+connections_service/google_sheets_service_account_credentials.json
