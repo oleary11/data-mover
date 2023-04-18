@@ -1,6 +1,6 @@
 const bodyParser = require('body-parser');
 const Connection = require('./../models/Connection');
-const jsonParser = bodyParser.json()
+const jsonParser = bodyParser.json();
 
 module.exports = function(app){
 
