@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 const { Schema, model } = mongoose;
 
 const connectionSchema = new Schema({
+    ConnectionId: Number,
     SourceId : Number,
     DestinationId: Number,
-    ConnectionType: String,
     Frequency: String,
-    LastSync: Date,
+    LastSync: String,
     IsEnabled: Boolean
 });
 

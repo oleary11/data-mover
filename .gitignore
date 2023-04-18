@@ -4,5 +4,9 @@
 /config_service/package-lock.json
 /config_service/node_modules
 
+# Volumes
+/mongo-volume-1
+/mongo-volume-2
+
 #Dev files 
-/dev
+/dev/cache.txt
