@@ -1,11 +1,7 @@
 // Imports
 const express = require('express');
-const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const Source = require('./models/Source')
-const Destination = require('./models/Destination');
-
 
 // Constants
 const app = express();
