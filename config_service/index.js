@@ -5,12 +5,11 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const Source = require('./models/Source')
 const Destination = require('./models/Destination');
-const Connection = require('./models/Connection');
+
 
 // Constants
 const app = express();
 const port = 3000;
-const jsonParser = bodyParser.json() // create application/json parser
 
 // Database
 const DB_URL = 'mongodb://127.0.0.1:27017/config_db';
@@ -28,173 +27,10 @@ mongoose.connection.once('open', function () {
 })
 const db = mongoose.connection;
 
-// Endpoints
-app.get('/source', (req, res) => {
-    Source.find({})
-    .then((data) => {
-        res.json(data);
-    })
-    .catch((err) => {
-        console.log(err);
-        res.json({"message" : "Error fetching sources."});
-    })
-});
-
-app.get('/source/:id', (req, res) => {
-    Source.findOne({"SourceId" : req.params.id})
-    .then((data) => {
-        res.json(data);
-    })
-    .catch((err) => {
-        console.log(err);
-        res.json({"message" : "Error fetching source."});
-    })
-});
-
-app.post('/source', jsonParser, (req, res) => {
-    const new_source = new Source(req.body);
-    new_source.save().then(val => {
-        res.json({ message: "Source added successfully", data: val })
-      });
-});
-
-app.put('/source/:id', jsonParser, (req, res) => {
-    const new_source = new Source(req.body);
-    Source.updateOne({ "SourceId" : req.params.id}, {
-        $set: {
-            SourceType : new_source.SourceType,
-            ClientId : new_source.ClientId,
-            ClientSecret : new_source.ClientSecret,
-            RefreshToken : new_source.RefreshToken
-        }
-    }).then(val => {
-        res.json({ message: "Source updated successfully", data: val })
-      });
-  });
-
-app.delete('/source/:id', jsonParser, (req, res) => {
-    
-    Source.deleteOne({ "SourceId" : req.params.id})
-    .then((data) => {
-        res.json(data);
-    })
-    .catch((err) => {
-        res.json({"message" : "Error deleting source."});
-    })
-});
-
-app.get('/destination', (req, res) => {
-    Destination.find({})
-    .then((data) => {
-        res.json(data);
-    })
-    .catch((err) => {
-        res.json({"message" : "Error fetching destinations."});
-    })
-});
-
-app.get('/destination/:id', (req, res) => {
-    Source.findOne({"DestinationId" : req.params.id})
-    .then((data) => {
-        res.json(data);
-    })
-    .catch((err) => {
-        console.log(err);
-        res.json({"message" : "Error fetching destination."});
-    })
-});
-
-app.post('/destination', jsonParser, (req, res) => {
-    const new_destination = new Destination(req.body);
-    new_destination.save().then(val => {
-        res.json({ message: "Destination added successfully", data: val })
-      });
-});
-
-app.put('/destination/:id', jsonParser, (req,res) => {
-    const new_destination = new Destination(req.body);
-    Destination.updateOne({"DestinationId" : req.params.id}, {
-        $set: {
-            DestinationType: new_destination.DestinationType,
-            Host: new_destination.Host,
-            Post: new_destination.port,
-            DBName: new_destination.DBName,
-            User: new_destination.User,
-            Pass: new_destination.Pass
-        }
-    })
-    .then(val => {
-        res.json({message : "Destination updated successfully", data: val})
-    })
-    .catch((err) => {
-        console.log(err);
-        res.json({"message" : "Error updating Destination."});
-    });
-})
-
-app.delete('/destination/:id', jsonParser, (req,res) => {
-    Destination.deleteOne({"DestinationId" : req.params.id})
-    .then((data) => {
-        res.json(data)
-    })
-    .catch((err) => {
-        res.json({"message" : "Error deleting destination."});
-    })
-});
-
-app.get('/connection', jsonParser, (req, res) => {
-    Connection.find({})
-    .then((data) => {
-        res.json(data);
-    })
-    .catch((err) => {
-        res.json({"message" : "Error fetching connections."});
-    })
-});
-
-app.get('/connection/:id', jsonParser, (req, res) => {
-    Connection.findOne({"ConnectionId" : req.params.id})
-    .then((data) => {
-        res.json(data);
-    })
-    .catch((err) => {
-        res.json({"message" : "Error fetching connection."});
-    })
-});
-
-app.post('/connection', jsonParser, (req, res) => {
-    const new_connection = new Connection(req.body);
-    new_connection.save().then(val => {
-        res.json({ message: "Connection added successfully", data: val })
-      });
-});
-
-app.put('/connection/:id', jsonParser, (req,res) => {
-    const new_connection = new Connection(req.body);
-    Connection.updateOne({"ConnectionId" : req.params.id}, {
-        $set: {
-            SourceId: new_connection.SourceId,
-            DestinationId: new_connection.DestinationId
-        }
-    })
-    .then(val => {
-        res.json({message : "Connection updated successfully", data: val})
-    })
-    .catch((err) => {
-        console.log(err);
-        res.json({"message" : "Error updating Connection."});
-    });
-});
-
-app.delete('/connection/:id', jsonParser, (req,res) => {
-    Connection.deleteOne({"ConnectionId" : req.params.id})
-    .then((data) => {
-        res.json(data)
-    })
-    .catch((err) => {
-        res.json({"message" : "Error deleting connection."});
-    })
-});
+// Adding routes
+require('./routes/source')(app);
+require('./routes/destination')(app);
+require('./routes/connection')(app);
 
 // Middleware
 app.use(cors({
