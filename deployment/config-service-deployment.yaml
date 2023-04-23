@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.28.0 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: config-service
+  name: config-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: config-service
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.28.0 (HEAD)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/datamover-data-mover: "true"
+        io.kompose.service: config-service
+    spec:
+      containers:
+        - env:
+            - name: config_database_host
+              value: config-db
+            - name: config_database_port
+              value: "27017"
+          image: gcr.io/data-mover-beta/config_service:latest
+          name: config-service
+          ports:
+            - containerPort: 8080
+          resources: {}
+      hostname: config-service
+      restartPolicy: Always
+status: {}

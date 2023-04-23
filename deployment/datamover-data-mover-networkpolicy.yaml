@@ -1,0 +1,14 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  creationTimestamp: null
+  name: datamover-data-mover
+spec:
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              io.kompose.network/datamover-data-mover: "true"
+  podSelector:
+    matchLabels:
+      io.kompose.network/datamover-data-mover: "true"
