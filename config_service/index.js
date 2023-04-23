@@ -5,10 +5,11 @@ const mongoose = require('mongoose');
 
 // Constants
 const app = express();
-const port = 3000;
+const port = 8080;
 
 // Database
-const DB_URL = 'mongodb://127.0.0.1:27017/config_db';
+const DB_URL = `mongodb://${process.env.config_database_host}:${process.env.config_database_port}/config_db`;
+console.log(DB_URL);
 const DB_OPTIONS = { 
     useNewUrlParser: true, 
     useUnifiedTopology: true, 

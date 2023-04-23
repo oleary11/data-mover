@@ -1,21 +1,36 @@
 version: '3.7'
 services:
-  config_db:
-    image: mongo:latest
+  config-service:
+    build: config_service
+    hostname : config-service
+    container_name : config-service
+    depends_on:
+      - config-db
+    ports:
+      - "5555:8080"
+    environment:
+      - config_database_host=config-db
+      - config_database_port=27017
+    networks:
+      - data-mover
+
+  config-db:
+    build: config_db
+    hostname : config-db
+    container_name : config-db
     environment:
       MONGO_INITDB_DATABASE: config_db
       MONGO_INITDB_ROOT_USERNAME: user
       MONGO_INITDB_ROOT_PASSWORD: Password@123
     ports:
-      - 27017:27017
+      - "27017:27017"
     networks:
-      - data_mover
-    volumes:
-      - ./database/init_config_db.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
-      - ./mongo-volume-1:/data/db
+      - data-mover
   
-  schedular_db:
-    image: mongo:latest
+  schedular-db:
+    build: scheduler_db
+    hostname: schedular-db
+    container_name: schedular-db
     environment:
       MONGO_INITDB_DATABASE: schedular_db
       MONGO_INITDB_ROOT_USERNAME: user
@@ -23,11 +38,8 @@ services:
     ports:
       - 27018:27017
     networks:
-      - data_mover
-    volumes:
-      - ./database/init_schedular_db.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
-      - ./mongo-volume-2:/data/db
+      - data-mover
 
 networks:
-  data_mover:
+  data-mover:
     driver: bridge
