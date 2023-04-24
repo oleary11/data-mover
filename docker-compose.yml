@@ -1,5 +1,14 @@
 version: '3.7'
 services:
+  cost_opt_service:
+    build: cost_opt_service
+    hostname : cost-service
+    container_name : cost-service
+    ports:
+      - "6666:6666"
+    networks:
+      - data-mover
+
   config-service:
     build: config_service
     hostname : config-service

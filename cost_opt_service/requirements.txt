@@ -1,0 +1,4 @@
+google-cloud-billing==1.10.0
+google-cloud-billing-budgets==1.10.0
+flask
+bs4

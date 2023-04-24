@@ -15,3 +15,6 @@
 
 #Credentials and Secrets :)
 connections_service/google_sheets_service_account_credentials.json
+
+#Credentials
+cost_opt_service/cred.json
