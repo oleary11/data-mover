@@ -21,7 +21,7 @@
 
   <div class="sources-container">
     <div class = "card">
-      <form class="sources-form">
+      <form action="destinations.html" method="post" class="sources-form">
         <div class="form-group">
           <label for="source" class="source-title">Set up the Source:</label>
           <hr>
@@ -31,10 +31,6 @@
             <option value="mysqlsource.html">MySQL</option>
             <option value="bigquerysource.html">BigQuery</option>
           </select>
-        </div>
-        <div class="form-group">
-          <label for="source-name">Source Name:</label>
-          <input type="text" class="form-control" id="source-name">
         </div>
         
         <div class="form-group">
@@ -48,8 +44,8 @@
         </div>
         
         <div class="form-group">
-          <label for="database">Database:</label>
-          <input type="text" class="form-control" id="database">
+          <label for="database-name">Database Name:</label>
+          <input type="text" class="form-control" id="database-name">
         </div>
         
         <div class="form-group">
@@ -66,46 +62,55 @@
             </div>
           </div>
         </div>
-        
-        <div class="form-group">
-          <label for="jdbc">JDBC URL Parameters (Advanced):</label>
-          <input type="text" class="form-control" id="port">
-        </div>
-        <button type="submit" class="btn btn-primary">Continue to Destination</button>
+
+        <button type="submit" class="btn btn-primary" id="mysql-source-submit-button">Continue to Destination</button>
       </form>
     </div>
     <div class = "card">
-      <table class="sources-table">
+      <table class="sources-table" id="mysqlsourcetable">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Connector</th>
-            <th>Destination</th>
-            <th>Last Sync</th>
-            <th>Status</th>
+            <th>Host</th>
+            <th>Port</th>
+            <th>DB Name</th>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Show Password</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Sample 1</td>
-            <td>Google Sheets
-            <td>MySQL</td>
-            <td>2023-03-23 14:35</td>
-            <td>Success</td>
+            <td>Place Holder</td>
+            <td>Place Holder</td>
+            <td>Place Holder</td>
+            <td>Place Holder</td>
+            <td class="masked-password">
+              <span class="actual-password" style="display:none;">Place Holder</span>
+              <span class="bullets">●●●●●●●</span>
+            </td>
+            <td><button class="btn btn-secondary toggleTableCellVisibility"><i class="fas fa-eye"></i></button></td>
           </tr>
           <tr>
-            <td>Sample 2</td>
-            <td>MySQL</td>
-            <td>BigQuery</td>
-            <td>2023-03-22 18:50</td>
-            <td>Success</td>
+            <td>Place Holder</td>
+            <td>Place Holder</td>
+            <td>Place Holder</td>
+            <td>Place Holder</td>
+            <td class="masked-password">
+              <span class="actual-password" style="display:none;">Place Holder</span>
+              <span class="bullets">●●●●●●●</span>
+            </td>
+            <td><button class="btn btn-secondary toggleTableCellVisibility"><i class="fas fa-eye"></i></button></td>
           </tr>
           <tr>
-            <td>Sample 3</td>
-            <td>BigQuery</td>
-            <td>Google Sheets</td>
-            <td>2023-03-23 10:15</td>
-            <td>Error</td>
+            <td>Place Holder</td>
+            <td>Place Holder</td>
+            <td>Place Holder</td>
+            <td>Place Holder</td>
+            <td class="masked-password">
+              <span class="actual-password" style="display:none;">Place Holder</span>
+              <span class="bullets">●●●●●●●</span>
+            </td>
+            <td><button class="btn btn-secondary toggleTableCellVisibility"><i class="fas fa-eye"></i></button></td>
           </tr>
         </tbody>
       </table>
@@ -116,6 +121,34 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script>
+  function toggleTableCellVisibility(event) {
+    var button = event.target.closest('button');
+    var rowIndex = button.closest('tr').rowIndex;
+    var table = document.getElementById('mysqlsourcetable');
+    var usernameCell = table.rows[rowIndex].cells[3];
+    var passwordCell = table.rows[rowIndex].cells[4];
+    var actualPassword = passwordCell.querySelector('.actual-password');
+    var bullets = passwordCell.querySelector('.bullets');
+
+    if (actualPassword.style.display === 'none') {
+      actualPassword.style.display = 'inline';
+      bullets.style.display = 'none';
+      button.innerHTML = '<i class="fas fa-eye-slash"></i>';
+    } else {
+      actualPassword.style.display = 'none';
+      bullets.style.display = 'inline';
+      button.innerHTML = '<i class="fas fa-eye"></i>';
+    }
+  }
+
+
+
+    // Add event listeners for the toggle buttons
+    var toggleTableCellButtons = document.getElementsByClassName('toggleTableCellVisibility');
+    for (var i = 0; i < toggleTableCellButtons.length; i++) {
+      toggleTableCellButtons[i].addEventListener('click', toggleTableCellVisibility);
+    }
+
     document.getElementById('source').addEventListener('change', function() {
       if (this.value) {
         window.location.href = this.value;
@@ -164,5 +197,7 @@
 
     window.onload = loadSelectedSource;
   </script>
+  <script src="scripts/api.js"></script>
+  <script src="scripts/mysqlsourceapi.js"></script>
 </body>
 </html>
