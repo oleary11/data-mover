@@ -24,11 +24,12 @@ function getAllSource() {
   
         filteredList.forEach(item => {
           if (item.SourceType == "GoogleSheets") {
-            const row = tableBody.insertRow();
-            row.insertCell().textContent = item.SheetName;
+            const row = tableBody.insertRow();            
             row.insertCell().textContent = item.SheetId;
+            row.insertCell().textContent = item.SheetName;
+            row.insertCell().textContent = 'active';
           }
-  
+          
           if (item.SourceType == "MySQL") {
             const row = tableBody.insertRow();
             row.insertCell().textContent = item.Host;
