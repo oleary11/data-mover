@@ -2,17 +2,16 @@ document.getElementById('submit-button').addEventListener('click', (event) => {
     event.preventDefault(); // Prevent the form from submitting and refreshing the page
   
     const sourceType = document.getElementById('destination').value;
-    const sourceName = document.getElementById('dest-name').value;
-    const spreadsheetLink = document.getElementById('dest-spreadsheet-link').value;
+    const SeetName = document.getElementById('dest-name').value;
+    const SheetID = document.getElementById('dest-spreadsheet-id').value;
   
     const requestData = {
-      sourceType: sourceType,
-      sourceName: sourceName,
-      rowBatchSize: parseInt(rowBatchSize),
-      spreadsheetLink: spreadsheetLink,
+      SourceType: SourceType,
+      SheetId: SheetID,
+      SheetName: sheetName
     };
   
-    fetch('http://localhost:3000/source', {
+    fetch('http://localhost:5555/source', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

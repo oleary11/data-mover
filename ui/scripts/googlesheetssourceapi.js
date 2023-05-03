@@ -6,9 +6,9 @@ document.getElementById('googlesheets-source-submit-button').addEventListener('c
     const SheetName = document.getElementById('sheet-name').value;
   
     const requestData = {
-      SourceType: sourceType,
-      SheetId: sourceName,
-      SheetName: parseInt(rowBatchSize),
+      SourceType: SourceType,
+      SheetId: SheetId,
+      SheetName: SheetName,
     };
   
     fetch('http://localhost:5555/source', {
