@@ -22,7 +22,7 @@
 
   <div class="sources-container">
     <div class = "card">
-      <form class="sources-form">
+      <form class="sources-form" style ="height:100px;overflow:visible;">
         <div class="form-group">
           <label for="destination" class="source-title">Retreive Cost Optimal option:</label>
           <hr>
@@ -35,36 +35,36 @@
         </div>
         <div class = "form-group">
             <label for = "location">Select a Location:</label>
-            <select class="form-control" id="location">
+            <select class="form-control" id="location2">
               <option value="">Select an option</option>
-              <option> us-east </option>
-              <option> us-east-2 </option>
-              <option> us-west-2 </option>
-              <option> us-west-2-lax-1a </option>
-              <option> us-west </option>
-              <option> ca-central-1 </option>
-              <option> eu-ireland </option>
-              <option> eu-central-1 </option>
-              <option> eu-west-2 </option>
-              <option> eu-west-3 </option>
-              <option>eu-north-1</option>
-              <option>apac-sin</option>
-              <option>apac-syd</option>
-              <option>apac-tokyo</option>
-              <option>ap-northeast-2</option>
-              <option>ap-northeast-3</option>
-              <option>ap-south-1</option>
-              <option>sa-east-1</option>
-              <option>ap-east-1</option>
-              <option>me-south-1</option>
-              <option>af-south-1</option>
-              <option>eu-south-1</option>
-              <option>ap-southeast-3</option>
-              <option>me-central-1</option>
-              <option>eu-central-2</option>
-              <option>eu-south-2</option>
-              <option>ap-south-2</option>
-              <option>ap-southeast-4</option>
+              <option value=""> us-east </option>
+              <option value=""> us-east-2 </option>
+              <option value=""> us-west-2 </option>
+              <option value=""> us-west-2-lax-1a </option>
+              <option value=""> us-west </option>
+              <option value=""> ca-central-1 </option>
+              <option value=""> eu-ireland </option>
+              <option value=""> eu-central-1 </option>
+              <option value=""> eu-west-2 </option>
+              <option value=""> eu-west-3 </option>
+              <option value="">eu-north-1</option>
+              <option value="">apac-sin</option>
+              <option value="">apac-syd</option>
+              <option value="">apac-tokyo</option>
+              <option value="">ap-northeast-2</option>
+              <option value="">ap-northeast-3</option>
+              <option value="">ap-south-1</option>
+              <option value="">sa-east-1</option>
+              <option value="">ap-east-1</option>
+              <option value="">me-south-1</option>
+              <option value="">af-south-1</option>
+              <option value="">eu-south-1</option>
+              <option value="">ap-southeast-3</option>
+              <option value="">me-central-1</option>
+              <option value="">eu-central-2</option>
+              <option value="">eu-south-2</option>
+              <option value="">ap-south-2</option>
+              <option value="">ap-southeast-4</option>
             </select>
           </div>
       </form>
@@ -72,7 +72,8 @@
       <div class="sources-form">
         <button class="btn btn-primary" id="costOptAWS">Search</button>
       </div>
-      <div>
+      <br>
+      <div class="sources-form">
         <p id="outputInstance"></p>
         <p id="outputName"></p>
         <p id="outputPrice"></p>
