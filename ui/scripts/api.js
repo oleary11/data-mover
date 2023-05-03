@@ -25,9 +25,8 @@ function getAllSource() {
         filteredList.forEach(item => {
           if (item.SourceType == "GoogleSheets") {
             const row = tableBody.insertRow();
-            row.insertCell().textContent = item.ClientId;
-            row.insertCell().textContent = item.ClientSecret;
-            row.insertCell().textContent = item.RefreshToken;
+            row.insertCell().textContent = item.SheetName;
+            row.insertCell().textContent = item.SheetId;
           }
   
           if (item.SourceType == "MySQL") {

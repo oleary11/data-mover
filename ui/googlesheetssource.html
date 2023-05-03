@@ -28,9 +28,9 @@
                 <hr>
                 <select class="form-control" id="source">
                   <option value="">Select a Source</option>
-                  <option value="googlesheetssource.html"><i class="far fa-file-excel"></i> Google Sheets</option>
-                  <option value="mysqlsource.html"><i class="far fa-database"></i> MySQL</option>
-                  <option value="bigquerysource.html"><i class="far fa-cloud"></i> BigQuery</option>
+                  <option value="GoogleSheets"><i class="far fa-file-excel"></i> Google Sheets</option>
+                  <option value="mySQL"><i class="far fa-database"></i> MySQL</option>
+                  <option value="bigQuery"><i class="far fa-cloud"></i> BigQuery</option>
                 </select>
               </div>
               <div class="form-group">
@@ -90,16 +90,16 @@
         var sourceNameInput = document.getElementById('source-name');
 
         switch (currentPage) {
-          case 'googlesheetssource.html':
+          case 'GoogleSheets':
             sourceDropdown.value = 'googlesheetssource.html';
             sourceNameInput.value = 'Google Sheets';
             break;
           case 'mysqlsource.html':
             sourceDropdown.value = 'mysqlsource.html';
-            sourceNameInput.value = 'MySQL';
+            sourceNameInput.value = 'mySQL';
             break;
           case 'bigquerysource.html':
-            sourceDropdown.value = 'bigquerysource.html';
+            sourceDropdown.value = 'bigQuery';
             sourceNameInput.value = 'Big Query';
             break;
           default:
