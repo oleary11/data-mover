@@ -13,8 +13,8 @@ document.getElementById('mysql-source-submit-button').addEventListener('click', 
       Host: Host,
       Port: Port,
       DBName: DBName,
-      Username: Username,
-      Password: Password,
+      User: Username,
+      Pass: Password,
     };
   
     fetch('http://localhost:5555/source', {
