@@ -1,0 +1,5 @@
+flask
+bs4
+requests
+google-auth
+google-cloud-compute
