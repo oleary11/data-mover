@@ -4,9 +4,8 @@ const { Schema, model } = mongoose;
 const sourceSchema = new Schema({
   SourceId: Number,
   SourceType: String,
-  ClientId: String,
-  ClientSecret: String,
-  RefreshToken: String
+  SheetId: String,
+  SheetName: String
 });
 
 module.exports = mongoose.model('Source',sourceSchema)
