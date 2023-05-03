@@ -17,7 +17,7 @@ async function writeDataToMySQL(tableName, data) {
     }
 
     // Create table if it doesn't exist.
-        var sql = "CREATE TABLE IF NOT EXISTS Sheet1 (city VARCHAR(255), number INT)";
+        var sql = "CREATE TABLE IF NOT EXISTS Sheet1 (PassengerId INT, Survived INT, Pclass INT, Name VARCHAR(255), Sex VARCHAR(255), Age INT, SibSp INT, Parch INT, Ticket VARCHAR(255), Fare VARCHAR(255), Cabin VARCHAR(255), Embarked VARCHAR(255))";
         connection.query(sql, function (err, result) {
             if (err) throw err;
             console.log("Table created!");

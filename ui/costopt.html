@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sources</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles/style.css">
+  <script src="https://kit.fontawesome.com/bfdf0e78f1.js" crossorigin="anonymous"></script>
+</head>
+<body id="sources">
+  <!-- Use Bootstrap classes to create a responsive navbar -->
+  <div class="sidenav">
+    <a href="index.html"><i class="fa fa-home"></i> Home</a>
+    <a href="about.html"><i class="fa fa-solid fa-question-circle"></i> About</a>
+    <a href="sources.html"><i class="fab fa-sourcetree"></i> Sources</a>
+    <a href="destinations.html"><i class="fas fa-map-marker-alt"></i> Destinations</a>
+    <a href="connections.html"><i class="fas fa-link"></i> Connections</a>
+    <a href="costopt.html"><i class="fas fa-link"></i> Cost Opt</a>
+    <a href="login.html" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+  </div>
+
+  <div class="sources-container">
+    <div class = "card">
+      <form class="sources-form">
+        <div class="form-group">
+          <label for="destination" class="source-title">Retreive Cost Optimal option:</label>
+          <hr>
+          <label for = "destination">Select a Cloud Provider:</label>
+          <select class="form-control" id="destination">
+            <option value="costopt.html">Select an option</option>
+            <option value="gcp.html"><i class="far fa-file-excel"></i> Google Cloud Platform</option>
+            <option value="aws.html"><i class="far fa-database"></i> Amazon Web Services</option>
+          </select>
+        </div>
+        <div class = "form-group">
+            <label for = "location">Select a Location:</label>
+            <select class="form-control" id="location">
+              <option value="">Select an option</option>
+            </select>
+        </div>
+      </form>
+      <div class="sources-form">
+        <button class="btn btn-primary">Search</button>
+      </div>
+    </div>
+
+  </div>
+  <!-- Link to Bootstrap CDN for JavaScript plugins -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    document.getElementById('destination').addEventListener('change', function() {
+      if (this.value) {
+        window.location.href = this.value;
+      }
+    });
+
+    function loadSelectedDest() {
+      var currentPage = window.location.href.split('/').pop();
+      var sourceDropdown = document.getElementById('destination');
+      var sourceNameInput = document.getElementById('dest-name');
+
+      switch (currentPage) {
+        case 'gcp.html':
+          sourceDropdown.value = 'gcp.html';
+          sourceNameInput.value = 'Google Cloud Platform';
+          break;
+        case 'aws.html':
+          sourceDropdown.value = 'aws.html';
+          sourceNameInput.value = 'Amazon Web Services';
+          break;
+        case 'costopt.html':
+          sourceDropdown.value = 'costopt.html';
+          sourceNameInput.value = 'Select an option';
+          break;
+        default:
+          sourceDropdown.value = '';
+          sourceNameInput.value = '';
+      }
+    }
+
+    window.onload = loadSelectedDest;
+  </script>
+ 
+</body>
+</html>
+
