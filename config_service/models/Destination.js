@@ -5,7 +5,7 @@ const destinationSchema = new Schema({
   DestinationId: Number,
   DestinationType: String,
   Host: String,
-  Post: String,
+  Port: String,
   DBName: String,
   User: String,
   Pass: String
