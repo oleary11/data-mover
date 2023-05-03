@@ -9,6 +9,7 @@ const {
   } = require('./connectors/GoogleSheetsConnector.js');
 
 const { writeDataToMySQL } = require('./connectors/MySQLConnector.js')
+const { createBQDataset } = require('./connectors/BigQueryConnector.js')
 // Constants
 const app = express();
 const port = 3001;
@@ -36,9 +37,23 @@ async function writeToMySQL(sheetName, data) {
   }
 }
 
+async function writeToBigQuery(projectId, datasetName, data) {
+  try {
+      const response = await createBQDataset(projectId, datasetName, data);
+      return response;
+  } catch(error) {
+    console.log(error.message, error.stack);
+  }
+}
+
 async function gSheetToMySQL(spreadsheetId,sheetName) {
   let data = await getGSheetData(spreadsheetId,sheetName);
   return writeToMySQL(sheetName,data.values);
+}
+
+async function gSheetToBigQuery(spreadsheetId,sheetName, projectId, datasetName) {
+  let data = await getGSheetData(spreadsheetId,sheetName);
+  return writeToBigQuery(projectId, datasetName, data);
 }
 
 // Adding routes
@@ -52,6 +67,8 @@ app.post('/gsheet', jsonParser, (req, res) => {
 });
 
 app.post('/gsheetToMySQL', jsonParser, (req, res) => {
+  process.env['GOOGLE_APPLICATION_CREDENTIALS'] = './google_sheets_service_account_credentials.json';
+
   const bodyParams = req.body;
   const sheetId = bodyParams.sheetId;
   const sheetName = bodyParams.sheetName;
@@ -60,6 +77,20 @@ app.post('/gsheetToMySQL', jsonParser, (req, res) => {
     res.json({ message: "Data moved successfully!", data: val })
   });
 
+});
+
+app.post('/gsheetToBigQuery', jsonParser, (req, res) => {
+  process.env['GOOGLE_APPLICATION_CREDENTIALS'] = './big_query_service_account_credentials.json';
+
+  const bodyParams = req.body;
+  const sheetId = bodyParams.sheetId;
+  const sheetName = bodyParams.sheetName;
+  const projectId = bodyParams.projectId;
+  const datasetName = bodyParams.datasetName;
+  gSheetToBigQuery(sheetId,sheetName, projectId, datasetName).then(val => {
+    console.log('gsheetToBigQuery successful!', JSON.stringify(val, null, 2));
+    res.json({ message: "Data moved successfully!", data: val })
+  });
 });
 
 app.get('/health', jsonParser, (req,res) => {
