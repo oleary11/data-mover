@@ -21,7 +21,7 @@
 
   <div class="sources-container">
     <div class = "card">
-      <form action="destinations.html" method="post" class="sources-form">
+      <form action="destinations.html" method="post" class="sources-form" id="sources-form">
         <div class="form-group">
           <label for="source" class="source-title">Set up the Source:</label>
           <hr>
@@ -78,6 +78,11 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script>
+    document.getElementById('sources-form').addEventListener('submit', function (event) {
+      event.preventDefault();
+      // Add your desired functionality here
+    });
+
       const sourceToPage = {
         'GoogleSheets': 'googlesheetssource.html',
         'MySQL': 'mysqlsource.html',
