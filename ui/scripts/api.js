@@ -26,7 +26,7 @@ function getAllSource() {
           }
         }
       };
-      xhr.open('GET', 'http://127.0.0.1:6666/get_instance?gcp_location=Mumbai&usage=1');
+      xhr.open('GET', 'http://127.0.0.1:7777/get_instance?gcp_location=Mumbai&usage=1');
       xhr.send();
     });
   }
@@ -43,7 +43,7 @@ function getAllSource() {
           }
         }
       };
-      xhr.open('GET', 'http://127.0.0.1:6666/get_instance?aws_location=us-west-2&usage=1');
+      xhr.open('GET', 'http://127.0.0.1:7777/get_instance?aws_location=us-west-2&usage=1');
       xhr.send();
     });
   }
