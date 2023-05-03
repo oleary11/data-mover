@@ -18,8 +18,8 @@ function getAllSource() {
   function populateConnectionTable(sourceType) {
     getAllSource()
       .then((list) => {
-        const connectionTable = document.getElementById('connectiontable');
-        const tableBody = connectionTable.querySelector('tbody');
+        const connectiontable = document.getElementById('connectiontable');
+        const tableBody = connectiontable.querySelector('tbody');
         tableBody.innerHTML = ''; // Clear existing rows
   
         list.forEach(item => {

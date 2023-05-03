@@ -28,7 +28,6 @@ function getAllSource() {
             row.insertCell().textContent = item.SourceId;            
             row.insertCell().textContent = item.SheetId;
             row.insertCell().textContent = item.SheetName;
-            row.insertCell().textContent = 'active';
           }
           
           if (item.SourceType == "MySQL") {
