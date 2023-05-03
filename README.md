@@ -1,7 +1,7 @@
 # Data Mover
 
 Cost-effective Extract-Load-Transform (ELT) Tool.
-![Data Mover Architecture](docs/static/datamover_architecture.png)
+![Data Mover Architecture](docs/static/DataMover_Architecture.png)
 
 ## Docs
 1. [Design Document](https://docs.google.com/document/d/14tBpxzIG12VEKYUUH8YGCofWR9Pn1dcKumXq6VUu_0Y/edit?usp=sharing)
