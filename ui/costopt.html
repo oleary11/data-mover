@@ -20,29 +20,64 @@
     <a href="login.html" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
   </div>
 
-  <div class="sources-container">
-    <div class = "card">
-      <form class="sources-form">
-        <div class="form-group">
-          <label for="destination" class="source-title">Retreive Cost Optimal option:</label>
-          <hr>
-          <label for = "destination">Select a Cloud Provider:</label>
-          <select class="form-control" id="destination">
-            <option value="costopt.html">Select an option</option>
-            <option value="gcp.html"><i class="far fa-file-excel"></i> Google Cloud Platform</option>
-            <option value="aws.html"><i class="far fa-database"></i> Amazon Web Services</option>
-          </select>
-        </div>
-        <div class = "form-group">
-            <label for = "location">Select a Location:</label>
-            <select class="form-control" id="location">
-              <option value="">Select an option</option>
+
+
+    <!-- -->
+    <div class="sources-container">
+      <div class = "card">
+        <form class="sources-form" style ="height:100px;overflow:visible;">
+          <div class="form-group">
+            <label for="destination" class="source-title">Retreive Cost Optimal option:</label>
+            <hr>
+            <label for = "destination">Select a Cloud Provider:</label>
+            <select class="form-control" id="destination">
+              <option value="costopt.html">Select an option</option>
+              <option value="gcp.html"><i class="far fa-file-excel"></i> Google Cloud Platform</option>
+              <option value="aws.html"><i class="far fa-database"></i> Amazon Web Services</option>
             </select>
-        </div>
-      </form>
-      <div class="sources-form">
-        <button class="btn btn-primary">Search</button>
+          </div>
+          <div class = "form-group">
+              <label for = "location">Select a Location:</label>
+              <select class="form-control" id="location1">
+                <option value="">Select an option</option>
+                <option value="">Cape Town</option>
+                <option value="">Bangkok</option>
+                <option value="">Beijing</option>
+                <option value="">Hong Kong</option>
+                <option value="">Jakarta</option>
+                <option value="">Mumbai</option>
+                <option value="">Osaka</option>
+                <option value="">Seoul</option>
+                <option value="">Singapore</option>
+                <option value="">Tokyo</option>
+                <option value="">Amsterdam</option>
+                <option value="">Frankfurt</option>
+                <option value="">London</option>
+                <option value="">Madrid</option>
+                <option value="">Milan</option>
+                <option value="">Paris</option>
+                <option value="">Stockholm</option>
+                <option value="">Ashburn</option>
+                <option value="">Dallas</option>
+                <option value="">Los Angeles</option>
+                <option value="">Montreal</option>
+                <option value="">New York</option>
+                <option value="">Toronto</option>
+                <option value="">São Paulo</option>
+              </select>
+            </div>
+        </form>
+        <br>
+        <div class="sources-form">
+        <button class="btn btn-primary" id="costOptGCP">Search</button>
       </div>
+      <br>
+      <div class="sources-form">
+        <p id="outputName"></p>
+        <p id="outputPrice"></p>
+      </div>
+      </div>
+  
     </div>
 
   </div>
