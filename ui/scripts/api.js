@@ -31,6 +31,22 @@ function getAllSource() {
     });
   }
 
+  function getOptCost2() {
+    return new Promise((resolve, reject) => {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            resolve(JSON.parse(xhr.responseText));
+          } else {
+            reject('Error fetching data');
+          }
+        }
+      };
+      xhr.open('GET', 'http://127.0.0.1:6666/get_instance?aws_location=us-west-2&usage=1');
+      xhr.send();
+    });
+  }
 
 function getCostGCP() {
     getOptCost1()
@@ -45,6 +61,24 @@ function getCostGCP() {
     .catch((error) => {
       console.error(error);
     });
+}
+
+function getCostAWS() {
+  getOptCost2()
+  .then((data) => {
+    const instanceName = data["aws"]["instance"]
+    const myinstanceName = JSON.stringify(instanceName);
+    const locationName = data["aws"]["location"]
+    const mylocationName = JSON.stringify(locationName);
+    const locationPrice = data["aws"]["price"]
+    const mylocationPrice = JSON.stringify(locationPrice);
+    document.getElementById("outputInstance").innerHTML = myinstanceName;
+    document.getElementById("outputName").innerHTML = mylocationName;
+    document.getElementById("outputPrice").innerHTML = mylocationPrice;
+  })
+  .catch((error) => {
+    console.error(error);
+  });
 }
 
 
@@ -94,6 +128,8 @@ function getCostGCP() {
   }
   
   document.getElementById("costOptGCP").addEventListener("click", getCostGCP);
+
+  document.getElementById("costOptAWS").addEventListener("click", getCostAWS);
   
   document.addEventListener('DOMContentLoaded', () => {
     populateSourceTable('GoogleSheets', 'googlesheetssourcetable');
