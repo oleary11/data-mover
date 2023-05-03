@@ -35,7 +35,7 @@ def create_instance():
 
         # Retrieve an instance template by name.
         instance_template = instance_template_client.get(
-            project=project, instance_template="vm-template"
+            project=project, instance_template="spot-instance-template"
         )
 
         # Adjust diskType field of the instance template to use the URL formatting required by instances.insert.diskType
