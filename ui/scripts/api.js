@@ -17,6 +17,9 @@ function getAllSource() {
   function getOptCost1() {
     return new Promise((resolve, reject) => {
       var xhr = new XMLHttpRequest();
+      var e = document.getElementById("location1");
+      var locval = e.options[e.selectedIndex].text;
+      var url = "http://127.0.0.1:7777/get_instance?gcp_location="+locval+"&usage=1"
       xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
@@ -26,7 +29,7 @@ function getAllSource() {
           }
         }
       };
-      xhr.open('GET', 'http://127.0.0.1:7777/get_instance?gcp_location=Mumbai&usage=1');
+      xhr.open('GET', url);
       xhr.send();
     });
   }
@@ -34,6 +37,9 @@ function getAllSource() {
   function getOptCost2() {
     return new Promise((resolve, reject) => {
       var xhr = new XMLHttpRequest();
+      var e2 = document.getElementById("location2");
+      var locval2 = e2.options[e2.selectedIndex].text;
+      var url2 = "http://127.0.0.1:7777/get_instance?aws_location="+locval2+"&usage=1"
       xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
@@ -43,7 +49,7 @@ function getAllSource() {
           }
         }
       };
-      xhr.open('GET', 'http://127.0.0.1:7777/get_instance?aws_location=us-west-2&usage=1');
+      xhr.open('GET', url2);
       xhr.send();
     });
   }
@@ -55,8 +61,10 @@ function getCostGCP() {
       const mylocationName = JSON.stringify(locationName);
       const locationPrice = data["gcp"]["location_based"]["core"]["price"]
       const mylocationPrice = JSON.stringify(locationPrice);
-      document.getElementById("outputName").innerHTML = mylocationName;
-      document.getElementById("outputPrice").innerHTML = mylocationPrice;
+      console.log('mylocationName');
+      console.log(mylocationName);
+      document.getElementById("outputName").innerHTML = "Cost Optimial Instance: " + mylocationName;
+      document.getElementById("outputPrice").innerHTML = "Price: " + mylocationPrice;
     })
     .catch((error) => {
       console.error(error);
@@ -72,9 +80,9 @@ function getCostAWS() {
     const mylocationName = JSON.stringify(locationName);
     const locationPrice = data["aws"]["price"]
     const mylocationPrice = JSON.stringify(locationPrice);
-    document.getElementById("outputInstance").innerHTML = myinstanceName;
-    document.getElementById("outputName").innerHTML = mylocationName;
-    document.getElementById("outputPrice").innerHTML = mylocationPrice;
+    document.getElementById("outputInstance").innerHTML = "Cost Optimial Instance: " + myinstanceName;
+    document.getElementById("outputName").innerHTML = "Location: " + mylocationName;
+    document.getElementById("outputPrice").innerHTML = "Price: " + mylocationPrice;
   })
   .catch((error) => {
     console.error(error);
@@ -127,9 +135,15 @@ function getCostAWS() {
       });
   }
   
-  document.getElementById("costOptGCP").addEventListener("click", getCostGCP);
-
-  document.getElementById("costOptAWS").addEventListener("click", getCostAWS);
+  const el = document.getElementById('costOptGCP');
+  if (el) {
+    el.addEventListener('click', getCostGCP);
+  }
+  
+  const el2 = document.getElementById('costOptAWS');
+  if (el2) {
+    el2.addEventListener('click', getCostAWS);
+  }
   
   document.addEventListener('DOMContentLoaded', () => {
     populateSourceTable('GoogleSheets', 'googlesheetssourcetable');
