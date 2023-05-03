@@ -14,7 +14,40 @@ function getAllSource() {
       xhr.send();
     });
   }
-  
+  function getOptCost1() {
+    return new Promise((resolve, reject) => {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            resolve(JSON.parse(xhr.responseText));
+          } else {
+            reject('Error fetching data');
+          }
+        }
+      };
+      xhr.open('GET', 'http://127.0.0.1:6666/get_instance?gcp_location=Mumbai&usage=1');
+      xhr.send();
+    });
+  }
+
+
+function getCostGCP() {
+    getOptCost1()
+    .then((data) => {
+      const locationName = data["gcp"]["location_based"]["core"]["description"]
+      const mylocationName = JSON.stringify(locationName);
+      const locationPrice = data["gcp"]["location_based"]["core"]["price"]
+      const mylocationPrice = JSON.stringify(locationPrice);
+      document.getElementById("outputName").innerHTML = mylocationName;
+      document.getElementById("outputPrice").innerHTML = mylocationPrice;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+
   function populateSourceTable(sourceType, tableId) {
     getAllSource()
       .then((list) => {
@@ -60,6 +93,7 @@ function getAllSource() {
       });
   }
   
+  document.getElementById("costOptGCP").addEventListener("click", getCostGCP);
   
   document.addEventListener('DOMContentLoaded', () => {
     populateSourceTable('GoogleSheets', 'googlesheetssourcetable');
