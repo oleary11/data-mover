@@ -14,7 +14,8 @@
     <a href="index.html"><i class="fa fa-home"></i> Home</a>
     <a href="about.html"><i class="fa fa-solid fa-question-circle"></i> About</a>
     <a href="sources.html"><i class="fab fa-sourcetree"></i> Sources</a>
-    <a href="destinations.html"><i class="fas fa-map-marker-alt"></i> Destinations</a> 
+    <a href="destinations.html"><i class="fas fa-map-marker-alt"></i> Destinations</a>
+    <a href="connections.html"><i class="fas fa-link"></i> Connections</a>
     <a href="login.html" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
   </div>
 
@@ -92,25 +93,31 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script>
-    document.getElementById('source').addEventListener('change', function() {
-      if (this.value) {
-        window.location.href = this.value;
-      }
-    });
+      const sourceToPage = {
+        'GoogleSheets': 'googlesheetssource.html',
+        'MySQL': 'mysqlsource.html',
+        'BigQuery': 'bigquerysource.html',
+      };
+      
+      document.getElementById('source').addEventListener('change', function () {
+        if (this.value) {
+          window.location.href = sourceToPage[this.value];
+        }
+      });
 
-    function loadSelectedSource() {
+      function loadSelectedSource() {
         var currentPage = window.location.href.split('/').pop();
         var sourceDropdown = document.getElementById('source');
         var sourceNameInput = document.getElementById('source-name');
 
         switch (currentPage) {
-          case 'GoogleSheets':
+          case 'googlesheetssource.html':
             sourceDropdown.value = 'GoogleSheets';
             sourceNameInput.value = 'Google Sheets';
             break;
           case 'mysqlsource.html':
             sourceDropdown.value = 'MySQL';
-            sourceNameInput.value = 'mySQL';
+            sourceNameInput.value = 'MySQL';
             break;
           case 'bigquerysource.html':
             sourceDropdown.value = 'BigQuery';

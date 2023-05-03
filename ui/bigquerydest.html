@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sources</title>
+  <title>Destinations</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="styles/style.css">
   <script src="https://kit.fontawesome.com/bfdf0e78f1.js" crossorigin="anonymous"></script>
@@ -27,14 +27,10 @@
           <hr>
           <select class="form-control" id="destination">
             <option value="">Select a Destination</option>
-            <option value="googlesheetsdest.html"><i class="far fa-file-excel"></i> Google Sheets</option>
-            <option value="mysqldest.html"><i class="far fa-database"></i> MySQL</option>
-            <option value="bigquerydest.html"><i class="far fa-cloud"></i> BigQuery</option>
+            <option value="GoogleSheets">Google Sheets</option>
+            <option value="MySQL"><i class="far fa-database"></i> MySQL</option>
+            <option value="BigQuery"><i class="far fa-cloud"></i> BigQuery</option>
           </select>
-        </div>
-        <div class="form-group">
-          <label for="destination-name">Destination Name:</label>
-          <input type="text" class="form-control" id="destination-name">
         </div>
       
         <div class="form-group">
@@ -42,97 +38,52 @@
           <input type="text" class="form-control" id="project-id">
         </div>
       
-        <div class = "form-group">
-          <label for = "location">Dataset Location:</label>
-          <select class="form-control" id="location">
-            <option value="">Select a Location</option>
-            <option> US </option>
-            <option> EU </option>
-            <option> asia-east1 </option>
-            <option> asia-east2 </option>
-            <option> asia-northeast1 </option>
-            <option> asia-northeast2 </option>
-            <option> asia-northeast3 </option>
-            <option> asia-south1 </option>
-            <option> asia-south2 </option>
-            <option> asia-southeast1 </option>
-            <option> asia-southeast2 </option>
-            <option> australia-southeast1 </option>
-            <option> australia-southeast2 </option>
-            <option> europe-central2 </option>
-            <option> europe-north </option>
-            <option> europe-west1 </option>
-            <option> europe-west2 </option>
-            <option> europe-west3 </option>
-            <option> europe-west4 </option>
-            <option> europe-west5 </option>
-            <option> europe-west6 </option>
-            <option> northameerica-northeast1 </option>
-            <option> northameerica-northeast2 </option>
-            <option> southamerica-east1 </option>
-            <option> southamerica-west1 </option>
-            <option> us-central1 </option>
-            <option> us-east1 </option>
-            <option> us-east4 </option>
-            <option> us-west1 </option>
-            <option> us-west2 </option>
-            <option> us-west3 </option>
-            <option> us-west4 </option>
-          </select>
-        </div>
-      
         <div class="form-group">
-          <label for="service-key">Service Account Key JSON:</label>
-          <input type="text" class="form-control" id="service-key">
+          <label for="dataset-id">Dataset ID:</label>
+          <input type="text" class="form-control" id="dataset-id">
         </div>
-      
+
         <div class="form-group">
-          <label for = "run-type">Transformative Query Run Type:</label>
-          <select class="form-control" id="run-type">
-            <option> iteractive </option>
-            <option> batch </option>
-          </select>
+          <label for="table-id">Table ID:</label>
+          <input type="text" class="form-control" id="table-id">
         </div>
-      
+
         <div class="form-group">
-          <label for="chunk-size">Google BigQuery Client Chunk Size</label>
-          <input type="number" class="form-control" id="chunk-size" value = "15">
+          <label for="key">Key: </label>
+          <input type="text" class="form-control" id="key">
         </div>
-        <button type="submit" class="btn btn-primary">Continue to Source</button>
+
+        <button type="submit" class="btn btn-primary" id="bigquery-dest-submit-button">Continue to Source</button>
       </form>
     </div>
     <div class = "card">
-      <table class="sources-table">
+      <table class="sources-table" id = "bigquerydesttable">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Connector</th>
-            <th>Destination</th>
-            <th>Last Sync</th>
-            <th>Status</th>
+            <th>Project ID</th>
+            <th>Dataset ID</th>
+            <th>Table ID</th>
+            <th>Key</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Sample 1</td>
-            <td>Google Sheets
-            <td>MySQL</td>
-            <td>2023-03-23 14:35</td>
-            <td>Success</td>
+            <td>Place Holder</td>
+            <td>Place Holder</td>
+            <td>Place Holder</td>
+            <td>Place Holder</td>
           </tr>
           <tr>
-            <td>Sample 2</td>
-            <td>MySQL</td>
-            <td>BigQuery</td>
-            <td>2023-03-22 18:50</td>
-            <td>Success</td>
+            <td>Place Holder</td>
+            <td>Place Holder</td>
+            <td>Place Holder</td>
+            <td>Place Holder</td>
           </tr>
           <tr>
-            <td>Sample 3</td>
-            <td>BigQuery</td>
-            <td>Google Sheets</td>
-            <td>2023-03-23 10:15</td>
-            <td>Error</td>
+            <td>Place Holder</td>
+            <td>Place Holder</td>
+            <td>Place Holder</td>
+            <td>Place Holder</td>
           </tr>
         </tbody>
       </table>
@@ -143,37 +94,45 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script>
-    document.getElementById('destination').addEventListener('change', function() {
-      if (this.value) {
-        window.location.href = this.value;
-      }
-    });
+      const sourceToPage = {
+        'GoogleSheets': 'googlesheetsdest.html',
+        'MySQL': 'mysqldest.html',
+        'BigQuery': 'bigquerydest.html',
+      };
+      
+      document.getElementById('destination').addEventListener('change', function () {
+        if (this.value) {
+          window.location.href = sourceToPage[this.value];
+        }
+      });
 
-    function loadSelectedDest() {
-      var currentPage = window.location.href.split('/').pop();
-      var sourceDropdown = document.getElementById('destination');
-      var sourceNameInput = document.getElementById('destination-name');
+      function loadSelectedSource() {
+        var currentPage = window.location.href.split('/').pop();
+        var sourceDropdown = document.getElementById('destination');
+        var sourceNameInput = document.getElementById('dest-name');
 
-      switch (currentPage) {
-        case 'googlesheetsdest.html':
-          sourceDropdown.value = 'googlesheetsdest.html';
-          sourceNameInput.value = 'Google Sheets';
-          break;
-        case 'mysqldest.html':
-          sourceDropdown.value = 'mysqldest.html';
-          sourceNameInput.value = 'MySQL';
-          break;
-        case 'bigquerydest.html':
-          sourceDropdown.value = 'bigquerydest.html';
-          sourceNameInput.value = 'Big Query';
-          break;
-        default:
-          sourceDropdown.value = '';
-          sourceNameInput.value = '';
+        switch (currentPage) {
+          case 'googlesheetsdest.html':
+            sourceDropdown.value = 'GoogleSheets';
+            sourceNameInput.value = 'Google Sheets';
+            break;
+          case 'mysqldest.html':
+            sourceDropdown.value = 'MySQL';
+            sourceNameInput.value = 'MySQL';
+            break;
+          case 'bigquerydest.html':
+            sourceDropdown.value = 'BigQuery';
+            sourceNameInput.value = 'Big Query';
+            break;
+          default:
+            sourceDropdown.value = '';
+            sourceNameInput.value = '';
+        }
       }
-    }
 
     window.onload = loadSelectedDest;
   </script>
+  <script src="scripts/sourceapi.js""></script>
+  <script src="scripts/googlesheetsdestapi.js""></script>
 </body>
 </html>

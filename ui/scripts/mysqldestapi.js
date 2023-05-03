@@ -1,14 +1,20 @@
-document.getElementById('googlesheets-dest-submit-button').addEventListener('click', (event) => {
+document.getElementById('mysql-dest-submit-button').addEventListener('click', (event) => {
     event.preventDefault(); // Prevent the form from submitting and refreshing the page
   
     const DestinationType = document.getElementById('destination').value;
-    const SheetName = document.getElementById('dest-sheet-name').value;
-    const SheetID = document.getElementById('dest-sheet-id').value;
+    const Host = document.getElementById('host').value;
+    const Port = document.getElementById('port').value;
+    const DBName = document.getElementById('dbname').value;
+    const User = document.getElementById('username').value;
+    const Pass = document.getElementById('password').value;
   
     const requestData = {
-      DestinationType: DestinationType,
-      SheetId: SheetID,
-      SheetName: SheetName
+        DestinationType: DestinationType,
+        Host: Host,
+        Port: Port,
+        DBName: DBName,
+        User: User,
+        Pass: Pass
     };
   
     fetch('http://localhost:5555/destination', {

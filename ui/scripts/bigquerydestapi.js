@@ -1,14 +1,18 @@
-document.getElementById('googlesheets-dest-submit-button').addEventListener('click', (event) => {
+document.getElementById('bigquery-dest-submit-button').addEventListener('click', (event) => {
     event.preventDefault(); // Prevent the form from submitting and refreshing the page
-  
+    
     const DestinationType = document.getElementById('destination').value;
-    const SheetName = document.getElementById('dest-sheet-name').value;
-    const SheetID = document.getElementById('dest-sheet-id').value;
+    const ProjectId = document.getElementById('project-id').value;
+    const DatasetId = document.getElementById('dataset-id').value;
+    const TableId = document.getElementById('table-id').value;
+    const key = document.getElementById('key').value;
   
     const requestData = {
       DestinationType: DestinationType,
-      SheetId: SheetID,
-      SheetName: SheetName
+      ProjectId: ProjectId,
+      DatasetId: DatasetId,
+      TableId: TableId,
+      key: key
     };
   
     fetch('http://localhost:5555/destination', {

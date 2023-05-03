@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sources</title>
+  <title>Destinations</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="styles/style.css">
   <script src="https://kit.fontawesome.com/bfdf0e78f1.js" crossorigin="anonymous"></script>
@@ -27,34 +27,30 @@
           <hr>
           <select class="form-control" id="destination">
             <option value="">Select a Destination</option>
-            <option value="googlesheetsdest.html"><i class="far fa-file-excel"></i> Google Sheets</option>
-            <option value="mysqldest.html"><i class="far fa-database"></i> MySQL</option>
-            <option value="bigquerydest.html"><i class="far fa-cloud"></i> BigQuery</option>
+            <option value="GoogleSheets"><i class="far fa-file-excel"></i> Google Sheets</option>
+            <option value="MySQL"><i class="far fa-database"></i> MySQL</option>
+            <option value="BigQuery"><i class="far fa-cloud"></i> BigQuery</option>
           </select>
-        </div>
-        <div class="form-group">
-          <label for="destination-name">Destination Name:</label>
-          <input type="text" class="form-control" id="destination-name">
         </div>
       
         <div class="form-group">
           <label for="host">Host:</label>
-          <input type="text" class="form-control" id="destination-name">
+          <input type="text" class="form-control" id="host">
         </div>
       
         <div class="form-group">
           <label for="port">Port:</label>
-          <input type="number" class="form-control" id="destination-name" value="3306">
+          <input type="number" class="form-control" id="port" value="3306">
         </div>
         
         <div class="form-group">
           <label for="dbname">DB Name:</label>
-          <input type="text" class="form-control" id="destination-name">
+          <input type="text" class="form-control" id="dbname">
         </div>
       
         <div class="form-group">
           <label for="username">Username:</label>
-          <input type="text" class="form-control" id="destination-name">
+          <input type="text" class="form-control" id="username">
         </div>
       
         <div class="form-group">
@@ -66,46 +62,55 @@
             </div>
           </div>
         </div>
-      
-        <div class="form-group">
-          <label for="jdbc-dest">JDBC URL Parameters</label>
-          <input type="text" class="form-control" id="spreadsheet-link">
-        </div>
-        <button type="submit" class="btn btn-primary">Continue to Source</button>
+
+        <button type="submit" class="btn btn-primary" id="mysql-dest-submit-button">Continue to Source</button>
       </form>
     </div>
     <div class = "card">
-      <table class="sources-table">
+      <table class="sources-table" id = "mysqldesttable">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Connector</th>
-            <th>Destination</th>
-            <th>Last Sync</th>
-            <th>Status</th>
+            <th>Host</th>
+            <th>Port</th>
+            <th>DB Name</th>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Show Password</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Sample 1</td>
-            <td>Google Sheets
-            <td>MySQL</td>
-            <td>2023-03-23 14:35</td>
-            <td>Success</td>
+            <td>Place Holder</td>
+            <td>Place Holder</td>
+            <td>Place Holder</td>
+            <td>Place Holder</td>
+            <td class="masked-password">
+              <span class="actual-password" style="display:none;">Place Holder</span>
+              <span class="bullets">●●●●●●●</span>
+            </td>
+            <td><button class="btn btn-secondary toggleTableCellVisibility"><i class="fas fa-eye"></i></button></td>
           </tr>
           <tr>
-            <td>Sample 2</td>
-            <td>MySQL</td>
-            <td>BigQuery</td>
-            <td>2023-03-22 18:50</td>
-            <td>Success</td>
+            <td>Place Holder</td>
+            <td>Place Holder</td>
+            <td>Place Holder</td>
+            <td>Place Holder</td>
+            <td class="masked-password">
+              <span class="actual-password" style="display:none;">Place Holder</span>
+              <span class="bullets">●●●●●●●</span>
+            </td>
+            <td><button class="btn btn-secondary toggleTableCellVisibility"><i class="fas fa-eye"></i></button></td>
           </tr>
           <tr>
-            <td>Sample 3</td>
-            <td>BigQuery</td>
-            <td>Google Sheets</td>
-            <td>2023-03-23 10:15</td>
-            <td>Error</td>
+            <td>Place Holder</td>
+            <td>Place Holder</td>
+            <td>Place Holder</td>
+            <td>Place Holder</td>
+            <td class="masked-password">
+              <span class="actual-password" style="display:none;">Place Holder</span>
+              <span class="bullets">●●●●●●●</span>
+            </td>
+            <td><button class="btn btn-secondary toggleTableCellVisibility"><i class="fas fa-eye"></i></button></td>
           </tr>
         </tbody>
       </table>
@@ -116,35 +121,67 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script>
-    document.getElementById('destination').addEventListener('change', function() {
-      if (this.value) {
-        window.location.href = this.value;
-      }
-    });
+      function toggleTableCellVisibility(event) {
+          var button = event.target.closest('button');
+          var rowIndex = button.closest('tr').rowIndex;
+          var table = document.getElementById('mysqldesttable');
+          var usernameCell = table.rows[rowIndex].cells[3];
+          var passwordCell = table.rows[rowIndex].cells[4];
+          var actualPassword = passwordCell.querySelector('.actual-password');
+          var bullets = passwordCell.querySelector('.bullets');
 
-    function loadSelectedDest() {
-      var currentPage = window.location.href.split('/').pop();
-      var sourceDropdown = document.getElementById('destination');
-      var sourceNameInput = document.getElementById('destination-name');
+          if (actualPassword.style.display === 'none') {
+            actualPassword.style.display = 'inline';
+            bullets.style.display = 'none';
+            button.innerHTML = '<i class="fas fa-eye-slash"></i>';
+          } else {
+            actualPassword.style.display = 'none';
+            bullets.style.display = 'inline';
+            button.innerHTML = '<i class="fas fa-eye"></i>';
+          }
+        }
 
-      switch (currentPage) {
-        case 'googlesheetsdest.html':
-          sourceDropdown.value = 'googlesheetsdest.html';
-          sourceNameInput.value = 'Google Sheets';
-          break;
-        case 'mysqldest.html':
-          sourceDropdown.value = 'mysqldest.html';
-          sourceNameInput.value = 'MySQL';
-          break;
-        case 'bigquerydest.html':
-          sourceDropdown.value = 'bigquerydest.html';
-          sourceNameInput.value = 'Big Query';
-          break;
-        default:
-          sourceDropdown.value = '';
-          sourceNameInput.value = '';
+      var toggleTableCellButtons = document.getElementsByClassName('toggleTableCellVisibility');
+      for (var i = 0; i < toggleTableCellButtons.length; i++) {
+        toggleTableCellButtons[i].addEventListener('click', toggleTableCellVisibility);
       }
-    }
+
+
+      const sourceToPage = {
+        'GoogleSheets': 'googlesheetsdest.html',
+        'MySQL': 'mysqldest.html',
+        'BigQuery': 'bigquerydest.html',
+      };
+      
+      document.getElementById('destination').addEventListener('change', function () {
+        if (this.value) {
+          window.location.href = sourceToPage[this.value];
+        }
+      });
+
+      function loadSelectedSource() {
+        var currentPage = window.location.href.split('/').pop();
+        var sourceDropdown = document.getElementById('destination');
+        var sourceNameInput = document.getElementById('dest-name');
+
+        switch (currentPage) {
+          case 'googlesheetsdest.html':
+            sourceDropdown.value = 'GoogleSheets';
+            sourceNameInput.value = 'Google Sheets';
+            break;
+          case 'mysqldest.html':
+            sourceDropdown.value = 'MySQL';
+            sourceNameInput.value = 'MySQL';
+            break;
+          case 'bigquerydest.html':
+            sourceDropdown.value = 'BigQuery';
+            sourceNameInput.value = 'Big Query';
+            break;
+          default:
+            sourceDropdown.value = '';
+            sourceNameInput.value = '';
+        }
+      }
 
     window.onload = loadSelectedDest;
 
@@ -164,5 +201,7 @@
     // Add an event listener for the "Show Password" button
     document.getElementById('togglePassword').addEventListener('click', togglePasswordVisibility);
   </script>
+  <script src="scripts/sourceapi.js""></script>
+  <script src="scripts/googlesheetsdestapi.js""></script>
 </body>
 </html>
