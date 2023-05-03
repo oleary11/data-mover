@@ -24,7 +24,8 @@ function getAllSource() {
   
         filteredList.forEach(item => {
           if (item.SourceType == "GoogleSheets") {
-            const row = tableBody.insertRow();            
+            const row = tableBody.insertRow();
+            row.insertCell().textContent = item.SourceId;            
             row.insertCell().textContent = item.SheetId;
             row.insertCell().textContent = item.SheetName;
             row.insertCell().textContent = 'active';
@@ -32,6 +33,7 @@ function getAllSource() {
           
           if (item.SourceType == "MySQL") {
             const row = tableBody.insertRow();
+            row.insertCell().textContent = item.SourceId;  
             row.insertCell().textContent = item.Host;
             row.insertCell().textContent = item.Port;
             row.insertCell().textContent = item.DBName;
@@ -46,6 +48,7 @@ function getAllSource() {
   
           if (item.SourceType == "BigQuery") {
             const row = tableBody.insertRow();
+            row.insertCell().textContent = item.SourceId;  
             row.insertCell().textContent = item.ProjectId;
             row.insertCell().textContent = item.DatasetId;
             row.insertCell().textContent = item.TableId;
