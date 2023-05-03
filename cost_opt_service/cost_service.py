@@ -227,4 +227,4 @@ def get_instance():
     return result
 
 if __name__ == '__main__':
-    app.run(port=6666,host='0.0.0.0')
+    app.run(port=7777,host='0.0.0.0')
